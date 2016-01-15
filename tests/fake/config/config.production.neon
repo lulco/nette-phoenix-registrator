@@ -1,0 +1,10 @@
+parameters:
+	database:
+		default:
+			adapter: pgsql
+			host: localhost
+			port: 5432
+			dbname: pg_phoenix
+			user: pg_phoenix
+			password: 12345
+			dsn: "%database.default.adapter%:host=%database.default.host%;dbname=%database.default.dbname%"
