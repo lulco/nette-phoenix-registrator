@@ -2,6 +2,7 @@
 
 namespace NettePhoenix;
 
+use InvalidArgumentException;
 use Nette\Neon\Neon;
 use Nette\Utils\Finder;
 
@@ -20,9 +21,18 @@ class ConfigParser
         $this->configDir = $configDir;
     }
     
-    public function addMigrationDir($migrationDir)
+    public function addMigrationDir($migrationDir, $dirName = null)
     {
-        $this->migrationDirs[] = $migrationDir;
+        if (!$dirName) {
+            $this->migrationDirs[] = $migrationDir;
+            return $this;
+        }
+        
+        if (isset($this->migrationDirs[$dirName])) {
+            throw new InvalidArgumentException('Migration dir with name "' . $dirName . '" already exists');
+        }
+        
+        $this->migrationDirs[$dirName] = $migrationDir;
         return $this;
     }
     
