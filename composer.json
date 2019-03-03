@@ -5,7 +5,7 @@
     "keywords": ["PHP", "Phoenix", "Nette"],
     "require": {
         "php": ">= 7.1.0",
-        "nette/finder": "^2.3",
+        "nette/finder": "^2.4",
         "nette/neon": "^2.3 | ^3.0"
     },
     "require-dev": {
