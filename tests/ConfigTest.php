@@ -2,16 +2,16 @@
 
 namespace NettePhoenix\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use NettePhoenix\ConfigParser;
 
-class ConfigTest extends PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
-    public function testParseDefaultNetteConfigFiles()
+    public function testParseDefaultNetteConfigFiles(): void
     {
         $configParser = new ConfigParser(__DIR__ . '/fake/config');
-        $this->assertInstanceOf('\NettePhoenix\ConfigParser', $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_1'));
-        $this->assertInstanceOf('\NettePhoenix\ConfigParser', $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_2'));
+        $this->assertInstanceOf(ConfigParser::class, $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_1'));
+        $this->assertInstanceOf(ConfigParser::class, $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_2'));
         $expected = [
             'migration_dirs' => [
                 __DIR__ . '/fake/migration_dir_1',
@@ -42,14 +42,14 @@ class ConfigTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $configParser->createConfig());
     }
     
-    public function testParseCustomNetteConfigFiles()
+    public function testParseCustomNetteConfigFiles(): void
     {
         $configParser = new ConfigParser(__DIR__ . '/fake/config');
-        $this->assertInstanceOf('\NettePhoenix\ConfigParser', $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_1'));
-        $this->assertInstanceOf('\NettePhoenix\ConfigParser', $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_2'));
-        $this->assertInstanceOf('\NettePhoenix\ConfigParser', $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_3'));
-        $this->assertInstanceOf('\NettePhoenix\ConfigParser', $configParser->setDefaultEnvironment('local'));
-        $this->assertInstanceOf('\NettePhoenix\ConfigParser', $configParser->setLogTableName('custom_phoenix_log'));
+        $this->assertInstanceOf(ConfigParser::class, $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_1'));
+        $this->assertInstanceOf(ConfigParser::class, $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_2'));
+        $this->assertInstanceOf(ConfigParser::class, $configParser->addMigrationDir(__DIR__ . '/fake/migration_dir_3'));
+        $this->assertInstanceOf(ConfigParser::class, $configParser->setDefaultEnvironment('local'));
+        $this->assertInstanceOf(ConfigParser::class, $configParser->setLogTableName('custom_phoenix_log'));
         $expected = [
             'migration_dirs' => [
                 __DIR__ . '/fake/migration_dir_1',

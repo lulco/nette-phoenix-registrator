@@ -1,19 +1,17 @@
 {
-	"name": "lulco/nette-phoenix-registrator",
-	"type": "library",
-	"description": "Integration of Phoenix Database Migrations into Nette Framework",
-	"keywords": ["PHP", "Phoenix", "Nette"],
-	"require": {
-		"php": ">=5.5.0",
-		"nette/finder": "~2.3",
-		"nette/neon": "~2.3"
-	},
-	"require-dev": {
-		"squizlabs/php_codesniffer": "~2.0",
-		"lulco/phoenix": "dev-master",
-		"phpunit/phpunit": "~4.8"
-	},
-	"autoload": {
-		"classmap": ["src/"]
-	}
+    "name": "lulco/nette-phoenix-registrator",
+    "type": "library",
+    "description": "Integration of Phoenix Database Migrations into Nette Framework",
+    "keywords": ["PHP", "Phoenix", "Nette"],
+    "require": {
+        "php": ">= 7.1.0",
+        "nette/finder": "^2.3",
+        "nette/neon": "^2.3 | ^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "> 7.0"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    }
 }
