@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use Nette\Neon\Neon;
 use Nette\Utils\Finder;
 
-class ConfigParser
+final class ConfigParser
 {
     private $configDir;
     
