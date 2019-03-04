@@ -1,9 +1,9 @@
 parameters:
-	database:
-		default:
-			adapter: mysql
-			host: localhost
-			dbname: phoenix
-			user: phoenix
-			password: 123
-			dsn: "%database.default.adapter%:host=%database.default.host%;dbname=%database.default.dbname%"
+    database:
+        default:
+            adapter: mysql
+            host: localhost
+            dbname: phoenix
+            user: phoenix
+            password: 123
+            dsn: "%database.default.adapter%:host=%database.default.host%;dbname=%database.default.dbname%"

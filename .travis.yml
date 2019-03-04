@@ -1,0 +1,37 @@
+language: php
+
+php:
+    - 7.1
+    - 7.2
+    - 7.3
+    - 7.4snapshot
+    - nightly
+
+sudo: false
+
+env:
+    matrix:
+        - COMPOSER_FLAGS="--prefer-lowest --prefer-stable"
+        - COMPOSER_FLAGS=""
+
+matrix:
+    allow_failures:
+        - php: 7.4snapshot
+        - php: nightly
+
+before_script:
+    - composer update ${COMPOSER_FLAGS} --no-interaction
+
+script:
+    - mkdir -p build/logs
+    - composer require squizlabs/php_codesniffer --dev
+    - vendor/bin/phpcs src --standard=PSR2 -n
+    - composer remove squizlabs/php_codesniffer --dev
+    - composer require efabrica/php-extensions-finder --dev
+    - vendor/bin/php-extensions-finder check src tests
+    - composer remove efabrica/php-extensions-finder --dev
+    - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+
+after_script:
+    - wget https://scrutinizer-ci.com/ocular.phar
+    - php ocular.phar code-coverage:upload --format=php-clover coverage.clover;

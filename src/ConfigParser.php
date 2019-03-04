@@ -16,12 +16,12 @@ class ConfigParser
     
     private $logTableName = 'phoenix_log';
     
-    public function __construct($configDir)
+    public function __construct(string $configDir)
     {
         $this->configDir = $configDir;
     }
     
-    public function addMigrationDir($migrationDir, $dirName = null)
+    public function addMigrationDir(string $migrationDir, string $dirName = null): ConfigParser
     {
         if (!$dirName) {
             $this->migrationDirs[] = $migrationDir;
@@ -36,19 +36,19 @@ class ConfigParser
         return $this;
     }
     
-    public function setDefaultEnvironment($defaultEnvironment)
+    public function setDefaultEnvironment(string $defaultEnvironment): ConfigParser
     {
         $this->defaultEnvironment = $defaultEnvironment;
         return $this;
     }
     
-    public function setLogTableName($logTableName)
+    public function setLogTableName(string $logTableName): ConfigParser
     {
         $this->logTableName = $logTableName;
         return $this;
     }
     
-    public function createConfig()
+    public function createConfig(): array
     {
         $configData = [
             'migration_dirs' => $this->migrationDirs,
