@@ -41,7 +41,7 @@ class ConfigTest extends TestCase
         ];
         $this->assertEquals($expected, $configParser->createConfig());
     }
-    
+
     public function testParseCustomNetteConfigFiles(): void
     {
         $configParser = new ConfigParser(__DIR__ . '/fake/config');

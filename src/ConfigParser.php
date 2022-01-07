@@ -9,45 +9,45 @@ use Nette\Utils\Finder;
 final class ConfigParser
 {
     private $configDir;
-    
+
     private $migrationDirs = [];
-    
+
     private $defaultEnvironment = '';
-    
+
     private $logTableName = 'phoenix_log';
-    
+
     public function __construct(string $configDir)
     {
         $this->configDir = $configDir;
     }
-    
+
     public function addMigrationDir(string $migrationDir, string $dirName = null): ConfigParser
     {
         if (!$dirName) {
             $this->migrationDirs[] = $migrationDir;
             return $this;
         }
-        
+
         if (isset($this->migrationDirs[$dirName])) {
             throw new InvalidArgumentException('Migration dir with name "' . $dirName . '" already exists');
         }
-        
+
         $this->migrationDirs[$dirName] = $migrationDir;
         return $this;
     }
-    
+
     public function setDefaultEnvironment(string $defaultEnvironment): ConfigParser
     {
         $this->defaultEnvironment = $defaultEnvironment;
         return $this;
     }
-    
+
     public function setLogTableName(string $logTableName): ConfigParser
     {
         $this->logTableName = $logTableName;
         return $this;
     }
-    
+
     public function createConfig(): array
     {
         $configData = [
@@ -72,7 +72,7 @@ final class ConfigParser
                 'username' => $dbData['user'],
                 'password' => $dbData['password'],
                 'db_name' => $dbData['dbname'],
-                'charset' => isset($dbData['charset']) ? $dbData['charset'] : 'utf8',
+                'charset' => $dbData['charset'] ?? ($dbData['adapter'] === 'mysql' ? 'utf8mb4' : 'utf8'),
             ];
             if (isset($dbData['port'])) {
                 $configData['environments'][$environment]['port'] = $dbData['port'];

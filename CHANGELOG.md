@@ -2,6 +2,9 @@
 
 ### [Unreleased][unreleased]
 
+#### Changed
+- default charset for mysql to utf8mb4
+
 ### [0.2.0] - 2019-03-04
 #### Changed
 - minimal required version of PHP is now 7.1.0 (BC Break)
