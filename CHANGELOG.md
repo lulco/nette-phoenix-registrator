@@ -2,6 +2,7 @@
 
 ### [Unreleased][unreleased]
 
+### [1.0.0] - 2022-01-27
 #### Changed
 - default charset for mysql to utf8mb4
 
@@ -22,7 +23,8 @@
 ### [0.1.0] - 2016-01-15
 - first version
 
-[unreleased]: https://github.com/lulco/nette-phoenix-registrator/compare/0.2.0...HEAD
+[unreleased]: https://github.com/lulco/nette-phoenix-registrator/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/lulco/nette-phoenix-registrator/compare/0.2.0...1.0.0
 [0.2.0]: https://github.com/lulco/nette-phoenix-registrator/compare/0.1.1...0.2.0
 [0.1.1]: https://github.com/lulco/nette-phoenix-registrator/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/lulco/nette-phoenix-registrator/compare/e13fa41ff5046c05c68bfde257d65dc4eaf951a1...0.1.0
