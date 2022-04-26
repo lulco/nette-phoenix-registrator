@@ -66,13 +66,15 @@ final class ConfigParser
                 continue;
             }
             $dbData = $neon['parameters']['database']['default'];
+            $charset = $dbData['charset'] ?? ($dbData['adapter'] === 'mysql' ? 'utf8mb4' : 'utf8');
             $configData['environments'][$environment] = [
                 'adapter' => $dbData['adapter'],
                 'host' => $dbData['host'],
                 'username' => $dbData['user'],
                 'password' => $dbData['password'],
                 'db_name' => $dbData['dbname'],
-                'charset' => $dbData['charset'] ?? ($dbData['adapter'] === 'mysql' ? 'utf8mb4' : 'utf8'),
+                'charset' => $charset,
+                'collation' => $dbData['collation'] ?? ($dbData['adapter'] === 'mysql' && $charset === 'utf8mb4' ? 'utf8mb4_general_ci' : null),
             ];
             if (isset($dbData['port'])) {
                 $configData['environments'][$environment]['port'] = $dbData['port'];
