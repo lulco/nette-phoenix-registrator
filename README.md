@@ -8,7 +8,7 @@ Integration of [Phoenix](https://github.com/lulco/phoenix) Database Migrations i
 [![Total Downloads](https://img.shields.io/packagist/dt/lulco/nette-phoenix-registrator.svg?style=flat-square)](https://packagist.org/packages/lulco/nette-phoenix-registrator)
 [![PHP 7 supported](http://php7ready.timesplinter.ch/lulco/nette-phoenix-registrator/master/badge.svg)](https://travis-ci.org/lulco/nette-phoenix-registrator)
 
-Reads config dir and creates Phoenix configuration based on files stored in it. Your database connections have to be set in this structure:
+Reads container and creates Phoenix configuration based on files stored in it. Your database connections have to be set in this structure:
 ```
 parameters:
     database:

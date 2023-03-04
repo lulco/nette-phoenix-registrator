@@ -3,22 +3,21 @@
 namespace NettePhoenix;
 
 use InvalidArgumentException;
-use Nette\Neon\Neon;
-use Nette\Utils\Finder;
+use Nette\DI\Container;
 
 final class ConfigParser
 {
-    private $configDir;
+    private const ENVIRONMENT = 'local';
+
+    private $container;
 
     private $migrationDirs = [];
 
-    private $defaultEnvironment = '';
-
     private $logTableName = 'phoenix_log';
 
-    public function __construct(string $configDir)
+    public function __construct(Container $container)
     {
-        $this->configDir = $configDir;
+        $this->container = $container;
     }
 
     public function addMigrationDir(string $migrationDir, string $dirName = null): ConfigParser
@@ -36,12 +35,6 @@ final class ConfigParser
         return $this;
     }
 
-    public function setDefaultEnvironment(string $defaultEnvironment): ConfigParser
-    {
-        $this->defaultEnvironment = $defaultEnvironment;
-        return $this;
-    }
-
     public function setLogTableName(string $logTableName): ConfigParser
     {
         $this->logTableName = $logTableName;
@@ -52,33 +45,23 @@ final class ConfigParser
     {
         $configData = [
             'migration_dirs' => $this->migrationDirs,
-            'default_environment' => $this->defaultEnvironment,
+            'default_environment' => self::ENVIRONMENT,
             'log_table_name' => $this->logTableName,
         ];
-        foreach (Finder::findFiles('config.*.neon')->in($this->configDir) as $configFile) {
-            $neon = Neon::decode(file_get_contents($configFile->getRealPath()));
-
-            if (!$neon) {
-                continue;
-            }
-            $environment = substr($configFile->getBaseName(), 7, -5);
-            if (!isset($neon['parameters']['database']['default'])) {
-                continue;
-            }
-            $dbData = $neon['parameters']['database']['default'];
-            $charset = $dbData['charset'] ?? ($dbData['adapter'] === 'mysql' ? 'utf8mb4' : 'utf8');
-            $configData['environments'][$environment] = [
-                'adapter' => $dbData['adapter'],
-                'host' => $dbData['host'],
-                'username' => $dbData['user'],
-                'password' => $dbData['password'],
-                'db_name' => $dbData['dbname'],
-                'charset' => $charset,
-                'collation' => $dbData['collation'] ?? ($dbData['adapter'] === 'mysql' && $charset === 'utf8mb4' ? 'utf8mb4_general_ci' : null),
-            ];
-            if (isset($dbData['port'])) {
-                $configData['environments'][$environment]['port'] = $dbData['port'];
-            }
+        $parameters = $this->container->getParameters();
+        $dbData = $parameters['database']['default'];
+        $charset = $dbData['charset'] ?? ($dbData['adapter'] === 'mysql' ? 'utf8mb4' : 'utf8');
+        $configData['environments'][self::ENVIRONMENT] = [
+            'adapter' => $dbData['adapter'],
+            'host' => $dbData['host'],
+            'username' => $dbData['user'],
+            'password' => $dbData['password'],
+            'db_name' => $dbData['dbname'],
+            'charset' => $charset,
+            'collation' => $dbData['collation'] ?? ($dbData['adapter'] === 'mysql' && $charset === 'utf8mb4' ? 'utf8mb4_general_ci' : null),
+        ];
+        if (isset($dbData['port'])) {
+            $configData['environments'][self::ENVIRONMENT]['port'] = $dbData['port'];
         }
         return $configData;
     }
