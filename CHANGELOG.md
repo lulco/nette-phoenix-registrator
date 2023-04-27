@@ -2,6 +2,11 @@
 
 ### [Unreleased][unreleased]
 
+#### Changed
+- change ConfigParser constructor, remove $configDir, read from Container [BC]
+- remove function setDefaultEnvironment [BC]
+- environment is always "local"
+
 ### [1.0.1] - 2022-04-26
 #### Fixed
 - use utf8mb4_general_ci for mysql utf8mb4
