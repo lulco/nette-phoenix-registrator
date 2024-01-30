@@ -2,6 +2,9 @@
 
 ## [Unreleased][unreleased]
 
+#### Changed
+- removed unused nette/finder from composer
+
 ## [2.0.0] - 2023-04-27
 ### Changed
 - change ConfigParser constructor, remove $configDir, read from Container [BC]
