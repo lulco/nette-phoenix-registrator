@@ -2,7 +2,8 @@
 
 ## [Unreleased][unreleased]
 
-#### Changed
+## [2.0.1] - 2024-04-05
+### Changed
 - removed unused nette/finder from composer
 
 ## [2.0.0] - 2023-04-27
@@ -36,7 +37,8 @@
 ## [0.1.0] - 2016-01-15
 - first version
 
-[unreleased]: https://github.com/lulco/nette-phoenix-registrator/compare/2.0.0...HEAD
+[unreleased]: https://github.com/lulco/nette-phoenix-registrator/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/lulco/nette-phoenix-registrator/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/lulco/nette-phoenix-registrator/compare/1.0.1...2.0.0
 [1.0.1]: https://github.com/lulco/nette-phoenix-registrator/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/lulco/nette-phoenix-registrator/compare/0.2.0...1.0.0
