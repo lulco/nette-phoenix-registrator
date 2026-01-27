@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NettePhoenix;
 
 use InvalidArgumentException;
@@ -9,18 +11,19 @@ final class ConfigParser
 {
     private const ENVIRONMENT = 'local';
 
-    private $container;
+    /** @var string[] */
+    private array $migrationDirs = [];
 
-    private $migrationDirs = [];
+    private string $logTableName = 'phoenix_log';
 
-    private $logTableName = 'phoenix_log';
+    private Container $container;
 
     public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
-    public function addMigrationDir(string $migrationDir, string $dirName = null): ConfigParser
+    public function addMigrationDir(string $migrationDir, ?string $dirName = null): self
     {
         if (!$dirName) {
             $this->migrationDirs[] = $migrationDir;
@@ -35,12 +38,29 @@ final class ConfigParser
         return $this;
     }
 
-    public function setLogTableName(string $logTableName): ConfigParser
+    public function setLogTableName(string $logTableName): self
     {
         $this->logTableName = $logTableName;
         return $this;
     }
 
+    /**
+     * @return array{
+     *   migration_dirs: array<int, string>,
+     *   default_environment: string,
+     *   log_table_name: string,
+     *   environments: array<string, array{
+     *     adapter: string,
+     *     host: string,
+     *     username: string,
+     *     password: mixed,
+     *     db_name: string,
+     *     charset: string,
+     *     collation: string|null,
+     *     port?: int
+     *   }>
+     * }
+     */
     public function createConfig(): array
     {
         $configData = [

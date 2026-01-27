@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased][unreleased]
+### Changed
+- Improved internal compatibility with PHP 8.x
 
 ## [2.0.1] - 2024-04-05
 ### Changed

@@ -31,7 +31,7 @@ class ConfigTest extends TestCase
                     'adapter' => 'mysql',
                     'host' => 'localhost',
                     'username' => 'phoenix',
-                    'password' => 123,
+                    'password' => '123',
                     'db_name' => 'phoenix',
                     'charset' => 'utf8mb4',
                     'port' => 5432,
@@ -61,7 +61,7 @@ class ConfigTest extends TestCase
                     'adapter' => 'mysql',
                     'host' => 'localhost',
                     'username' => 'phoenix',
-                    'password' => 123,
+                    'password' => '123',
                     'db_name' => 'phoenix',
                     'charset' => 'utf8mb4',
                     'collation' => 'utf8mb4_general_ci'
