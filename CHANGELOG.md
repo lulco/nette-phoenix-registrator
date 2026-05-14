@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased][unreleased]
+
+## [2.0.2] - 2026-05-14
 ### Changed
 - Improved internal compatibility with PHP 8.x
 
@@ -39,7 +41,8 @@
 ## [0.1.0] - 2016-01-15
 - first version
 
-[unreleased]: https://github.com/lulco/nette-phoenix-registrator/compare/2.0.1...HEAD
+[unreleased]: https://github.com/lulco/nette-phoenix-registrator/compare/2.0.2...HEAD
+[2.0.2]: https://github.com/lulco/nette-phoenix-registrator/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/lulco/nette-phoenix-registrator/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/lulco/nette-phoenix-registrator/compare/1.0.1...2.0.0
 [1.0.1]: https://github.com/lulco/nette-phoenix-registrator/compare/1.0.0...1.0.1
